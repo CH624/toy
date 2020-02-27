@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CommonController {
     private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 
-    @GetMapping("/")
+    @GetMapping({"/", ""})
     public ModelAndView index(ModelAndView mv){
         logger.info("CommonController.index()");
         mv.setViewName("/index");
