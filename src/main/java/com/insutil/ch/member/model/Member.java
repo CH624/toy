@@ -24,7 +24,4 @@ public class Member {
 
     @Column
     private String name;
-
-    @Column
-    private int age;
 }

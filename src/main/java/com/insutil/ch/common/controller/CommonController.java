@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -16,6 +17,13 @@ public class CommonController {
     public ModelAndView index(ModelAndView mv){
         logger.info("CommonController.index()");
         mv.setViewName("/index");
+        return mv;
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(ModelAndView mv){
+        logger.info("CommonController.login()");
+        mv.setViewName("/user/login");
         return mv;
     }
 }
