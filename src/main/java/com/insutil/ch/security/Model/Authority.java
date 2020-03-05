@@ -13,12 +13,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class Authority {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="login_id")
-    private String loginId;
 
     @Column
     private String authority;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    public Authority(String authority){
+        this.authority = authority;
+    }
 }

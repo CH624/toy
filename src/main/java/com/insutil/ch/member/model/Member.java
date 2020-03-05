@@ -1,10 +1,12 @@
 package com.insutil.ch.member.model;
 
+import com.insutil.ch.security.Model.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "MEMBER")
 public class Member {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "login_id", unique=true)
@@ -24,4 +26,8 @@ public class Member {
 
     @Column
     private String name;
+
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    private List<Authority> roles;
 }

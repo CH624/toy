@@ -3,12 +3,16 @@ package com.insutil.ch.member.service;
 import com.insutil.ch.common.response.OperationAndMakeResponse;
 import com.insutil.ch.member.model.Member;
 import com.insutil.ch.member.repository.MemberRepository;
+import com.insutil.ch.security.Model.Authority;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,13 +23,13 @@ public class RegisterService implements OperationAndMakeResponse {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void insertMember(Member member) {
-        logger.info("MemberService.insertMember()" + member);
         member.setPassword(passwordEncoder.encode(member.getPassword()));
+        member.setRoles(Arrays.asList(new Authority("MEMBER")));
         memberRepository.save(member);
     }
 
     public boolean checkForDuplicateLoginId(Member member) {
         logger.info("RegisterService.checkForDuplicateLoginId()" + member.getLoginId());
-        return memberRepository.findByLoginId(member.getLoginId()).isEmpty();
+        return Optional.ofNullable(memberRepository.findByLoginId(member.getLoginId())).isEmpty();
     }
 }

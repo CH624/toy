@@ -4,18 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>AdminLTE 3 | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="/static/css/common/all.min.css">
-  <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- icheck bootstrap -->
   <link rel="stylesheet" href="/static/css/common/icheck-bootstrap.min.css">
-  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/css/common/toastr.min.css">
   <link rel="stylesheet" href="/static/css/common/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
@@ -28,7 +23,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="/login" method="post">
+      <form th:action="@{/login}" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Login id" id="loginId" name="loginId">
           <div class="input-group-append">
@@ -62,12 +57,13 @@
 </div>
 <!-- /.login-box -->
 
-<!-- jQuery -->
 <script src="/static/js/common/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="/static/js/common/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
+<script src="/static/js/common/jquery.validate.min.js"></script>
+<script src="/static/js/common/additional-methods.min.js"></script>
+<script src="/static/js/common/toastr.min.js"></script>
+<script src="/static/js/common/common-ajax.js"></script>
+<script src="/static/js/common/common.js"></script>
 <script src="/static/js/common/adminlte.min.js"></script>
-
 </body>
 </html>
