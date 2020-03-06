@@ -1,4 +1,4 @@
-package com.insutil.ch.security.Model;
+package com.insutil.ch.security.model;
 
 import com.insutil.ch.security.repository.AuthorityRepository;
 import org.junit.Test;
@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

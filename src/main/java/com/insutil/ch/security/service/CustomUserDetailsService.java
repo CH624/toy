@@ -2,9 +2,8 @@ package com.insutil.ch.security.service;
 
 import com.insutil.ch.member.model.Member;
 import com.insutil.ch.member.repository.MemberRepository;
-import com.insutil.ch.security.Model.Authority;
-import com.insutil.ch.security.Model.CustomUserDetails;
-import com.insutil.ch.security.repository.AuthorityRepository;
+import com.insutil.ch.security.model.Authority;
+import com.insutil.ch.security.model.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,7 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException{
-        Member member = Optional.ofNullable(memberRepository.findByLoginId(loginId)).orElseThrow(()-> new UsernameNotFoundException(loginId + "is not founded"));
+        Member member = Optional
+                .ofNullable(memberRepository.findByLoginId(loginId))
+                .orElseThrow(()-> new UsernameNotFoundException(loginId + "is not founded"));
         CustomUserDetails customUserDetails = new CustomUserDetails();
         customUserDetails.setUsername(member.getLoginId());
         customUserDetails.setPassword(member.getPassword());
@@ -36,7 +37,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         customUserDetails.setAccountNonExpired(true);
         customUserDetails.setAccountNonLocked(true);
         customUserDetails.setCredentialsNonExpired(true);
-        System.out.println("@@@@@@@" + customUserDetails);
         return customUserDetails;
     }
 

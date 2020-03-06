@@ -20,13 +20,6 @@ public class RegisterController {
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
     private final RegisterService registerService;
 
-    @GetMapping("/register")
-    public ModelAndView register(ModelAndView mv){
-        logger.info("RegisterController.register()");
-        mv.setViewName("/user/register");
-        return mv;
-    }
-
     @PostMapping("/api/register")
     @ResponseBody
     public ResponseEntity<OperationResponse> insertMember(Member member) {

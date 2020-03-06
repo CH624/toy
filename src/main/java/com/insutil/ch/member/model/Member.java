@@ -1,6 +1,6 @@
 package com.insutil.ch.member.model;
 
-import com.insutil.ch.security.Model.Authority;
+import com.insutil.ch.security.model.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +27,7 @@ public class Member {
     @Column
     private String name;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="user_id")
     private List<Authority> roles;
 }

@@ -1,0 +1,45 @@
+<div th:fragment="wrapper" class="card-body register-card-body">
+    <p class="login-box-msg">Register a new membership</p>
+
+    <form role="form" id="registerForm" novalidate="novalidate" method="post" th:action="@{/register}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="loginId" name="loginId" placeholder="Login id">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" id="retypePassword" name="retypePassword"
+                   placeholder="Retype password">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-2">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+    </form>
+
+    <a href="/login" class="text-center">I already have a membership</a>
+    <script src="/static/js/member/register.js"></script>
+</div>

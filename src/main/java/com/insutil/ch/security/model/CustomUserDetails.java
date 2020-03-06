@@ -1,4 +1,4 @@
-package com.insutil.ch.security.Model;
+package com.insutil.ch.security.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
