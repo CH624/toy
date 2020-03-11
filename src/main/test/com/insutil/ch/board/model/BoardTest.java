@@ -44,30 +44,18 @@ public class BoardTest {
 //    }
 
     @Test
-    public void boardTest(){
-        addBoard();
-        replyTest();
-        getBoardList();
-        getBoardReplyList();
-    }
-
-    @Test
-    public void getBoardList(){
-        boardRepository.findAll().stream().forEach(System.out::println);
-    }
-
-    @Test
-    public void getBoardReplyList(){
-        boardRepository.findById(1L).orElseThrow().getReplyList().stream().forEach(System.out::println);
-    }
-
-    @Test
     public void addBoard(){
         Board board = new Board();
         board.setSubject("첫번째 글");
         board.setContent("첫번째 글의 내용입니다.");
         board.setWriter(memberRepository.findByLoginId("ch624"));
         boardRepository.save(board);
+
+        Board board2 = new Board();
+        board2.setSubject("두번째 글");
+        board2.setContent("두번째 글의 내용입니다.");
+        board2.setWriter(memberRepository.findByLoginId("ch624"));
+        boardRepository.save(board2);
     }
 
     @Test
@@ -85,5 +73,44 @@ public class BoardTest {
         reply2.setWriter(memberRepository.findByLoginId("ch624"));
         reply2.setBoard(board);
         replyRepository.save(reply2);
+    }
+
+    @Test
+    public void getBoardList(){
+        boardRepository.findAll()
+                .stream()
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void getBoardReplyList(){
+        boardRepository.findById(1L).orElseThrow()
+                .getReplyList()
+                .stream()
+                .forEach(reply -> System.out.println(reply.getContent()));
+    }
+
+    @Test
+    public void boardTest(){
+//        addBoard();
+//        replyTest();
+//        getBoardList();
+//        getBoardReplyList();
+
+        //Board board = boardRepository.findById(1L).orElseThrow();
+        Board board2 = boardRepository.findById(2L).orElseThrow();
+        //board.getReplyList().get(0).setBoard(board2);
+
+        Reply reply = replyRepository.findById(1L).orElseThrow();
+        reply.setBoard(board2);
+
+//        board2.getReplyList().stream().forEach(reply1 -> System.out.println(reply1.getContent()));
+        System.out.println(reply.getBoard().getContent());
+    }
+
+    @Test
+    public void temp(){
+        Board board2 = boardRepository.findById(2L).orElseThrow();
+        board2.getReplyList().stream().forEach(reply -> System.out.println(reply.getContent()));
     }
 }
