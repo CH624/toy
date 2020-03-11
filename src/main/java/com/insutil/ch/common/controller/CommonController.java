@@ -27,14 +27,6 @@ public class CommonController {
         return mv;
     }
 
-    @GetMapping("/register")
-    public ModelAndView register(ModelAndView mv){
-        logger.info("RegisterController.register()");
-        mv.setViewName("/common/template");
-        mv.addObject("wrapName", "/common/register");
-        return mv;
-    }
-
     @GetMapping("/forgot")
     public ModelAndView forgotPassword(ModelAndView mv){
         logger.info("CommonController.forgotPassword()");

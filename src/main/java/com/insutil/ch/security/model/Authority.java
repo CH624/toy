@@ -19,9 +19,6 @@ public class Authority {
     @Column
     private String authority;
 
-    @Column(name = "user_id")
-    private Long userId;
-
     public Authority(String authority){
         this.authority = authority;
     }

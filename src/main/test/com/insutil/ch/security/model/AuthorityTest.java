@@ -18,6 +18,6 @@ public class AuthorityTest {
 
     @Test
     public void authorityTest(){
-        authorityRepository.findByUserId(1L).orElse(new ArrayList<>()).stream().forEach(System.out::println);
+
     }
 }

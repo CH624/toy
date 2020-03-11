@@ -1,18 +1,4 @@
 $(document).ready(function () {
-    $.validator.setDefaults({
-        submitHandler: function () {
-            CommonAjax.setData('POST', '/api/register', $('#registerForm').serialize());
-            CommonAjax.manipulateServerData(function (result) {
-                if(result.operationStatus === 'SUCCESS'){
-                    toastr.options.onHidden = function() { window.location.href='/login' };
-                    toastr.options.timeOut = '2000';
-                    toastr.success('회원가입 성공', 'Success');
-                }else{
-                    toastr.error('회원가입 실패', 'Error');
-                }
-            })
-        }
-    });
     $('#registerForm').validate({
         rules: {
             loginId: {
