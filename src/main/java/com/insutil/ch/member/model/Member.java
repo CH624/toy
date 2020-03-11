@@ -1,5 +1,6 @@
 package com.insutil.ch.member.model;
 
+import com.insutil.ch.board.model.Board;
 import com.insutil.ch.security.model.Authority;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,4 +31,8 @@ public class Member {
     @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name="user_id")
     private List<Authority> roles;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="member_id")
+    private List<Board> boardList;
 }

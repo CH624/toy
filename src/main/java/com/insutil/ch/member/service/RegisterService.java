@@ -28,8 +28,8 @@ public class RegisterService implements OperationAndMakeResponse {
         memberRepository.save(member);
     }
 
-    public boolean checkForDuplicateLoginId(Member member) {
-        logger.info("RegisterService.checkForDuplicateLoginId()" + member.getLoginId());
-        return Optional.ofNullable(memberRepository.findByLoginId(member.getLoginId())).isEmpty();
+    public boolean checkForDuplicateLoginId(String loginId) {
+        logger.info("RegisterService.checkForDuplicateLoginId()" + loginId);
+        return Optional.ofNullable(memberRepository.findByLoginId(loginId)).isEmpty();
     }
 }

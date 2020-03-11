@@ -30,8 +30,8 @@ public class RegisterController {
 
     @GetMapping("/api/register/check")
     @ResponseBody
-    public boolean checkForDuplicateLoginId(Member member){
-        logger.info("RegisterController.checkForDuplicateLoginId()" + member.getLoginId());
-        return registerService.checkForDuplicateLoginId(member);
+    public boolean checkForDuplicateLoginId(String loginId){
+        logger.info("RegisterController.checkForDuplicateLoginId()" + loginId);
+        return registerService.checkForDuplicateLoginId(loginId);
     }
 }
