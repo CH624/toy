@@ -9,5 +9,4 @@ import java.util.Optional;
 
 @Repository
 public interface AuthorityRepository extends JpaRepository<Authority, Long> {
-    Optional<List<Authority>> findByUserId(Long userId);
 }

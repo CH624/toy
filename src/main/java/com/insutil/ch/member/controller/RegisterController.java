@@ -20,12 +20,19 @@ public class RegisterController {
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
     private final RegisterService registerService;
 
-    @PostMapping("/api/register")
-    @ResponseBody
-    public ResponseEntity<OperationResponse> insertMember(Member member) {
+    @GetMapping("/register")
+    public ModelAndView register(ModelAndView mv){
+        logger.info("RegisterController.register()");
+        mv.setViewName("/common/template");
+        mv.addObject("wrapName", "/common/register");
+        return mv;
+    }
+
+    @PostMapping("/register")
+    public String insertMember(Member member) {
         logger.info("RegisterController.insertMember()");
         registerService.insertMember(member);
-        return new ResponseEntity<>(registerService.operationAndMakeResponse(true), HttpStatus.OK);
+        return "redirect:/login";
     }
 
     @GetMapping("/api/register/check")
