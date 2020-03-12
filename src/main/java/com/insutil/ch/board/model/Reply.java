@@ -19,10 +19,18 @@ public class Reply {
     @Column
     private String content;
 
-    @OneToOne
+    @ManyToOne
     private Board board;
 
     @OneToOne
     @JoinColumn(name = "member_id")
     private Member writer;
+
+    public void setBoard(Board board){
+        if(this.board != null){
+            this.board.getReplyList().remove(this);
+        }
+        this.board = board;
+        board.getReplyList().add(this);
+    }
 }

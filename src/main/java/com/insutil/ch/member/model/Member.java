@@ -1,6 +1,5 @@
 package com.insutil.ch.member.model;
 
-import com.insutil.ch.group.model.Group;
 import com.insutil.ch.security.model.Authority;
 import lombok.*;
 
@@ -25,9 +24,6 @@ public class Member {
 
     @Column
     private String name;
-
-    @ManyToOne
-    private Group group;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")

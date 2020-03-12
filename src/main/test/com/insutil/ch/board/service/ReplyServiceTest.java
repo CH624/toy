@@ -16,6 +16,7 @@ public class ReplyServiceTest {
 
     @Test
     public void replyServiceTest(){
-        replyService.replyTest();
+        //replyService.replyTest();
+        replyService.replyTest2();
     }
 }

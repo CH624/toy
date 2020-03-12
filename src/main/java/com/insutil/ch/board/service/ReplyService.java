@@ -14,12 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ReplyService {
     private final ReplyRepository replyRepository;
-    private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
 
     public void replyTest(){
-        Reply reply = replyRepository.findById(1L).orElseThrow();
-        Board board = boardRepository.findById(2L).orElseThrow();
+        Reply reply = replyRepository.findById(1L).orElseThrow();   // 첫번째 게시글의 첫번째 댓글
+        Board board = boardRepository.findById(2L).orElseThrow();   // 두번째 게시글
         board.getReplyList().add(reply);
+    }
+
+    public void replyTest2(){
+        Reply reply = replyRepository.findById(1L).orElseThrow();   // 첫번째 게시글의 첫번째 댓글
+        Board board = boardRepository.findById(2L).orElseThrow();   // 두번째 게시글
+        reply.setBoard(board);
     }
 }
