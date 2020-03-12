@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,7 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@Transactional
 public class BoardTest {
 
     @Autowired
@@ -91,20 +93,20 @@ public class BoardTest {
     }
 
     @Test
+    @Rollback(false)
     public void boardTest(){
 //        addBoard();
 //        replyTest();
 //        getBoardList();
 //        getBoardReplyList();
 
-        //Board board = boardRepository.findById(1L).orElseThrow();
-        Board board2 = boardRepository.findById(2L).orElseThrow();
-        //board.getReplyList().get(0).setBoard(board2);
+        Board board = boardRepository.findById(1L).orElseThrow();   // 첫번째 게시글
+        Board board2 = boardRepository.findById(2L).orElseThrow();  // 두번째 게시글
+        Reply reply = replyRepository.findById(1L).orElseThrow();   // 첫번째 게시글의 첫번째 댓글
 
-        Reply reply = replyRepository.findById(1L).orElseThrow();
-        reply.setBoard(board2);
-
-//        board2.getReplyList().stream().forEach(reply1 -> System.out.println(reply1.getContent()));
+        System.out.println(board.getReplyList().get(0) == reply);
+        //reply.setBoard(board2);
+        board2.getReplyList().add(reply);
         System.out.println(reply.getBoard().getContent());
     }
 

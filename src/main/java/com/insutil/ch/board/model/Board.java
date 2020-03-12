@@ -26,6 +26,7 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member writer;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany
+    @JoinColumn(name = "board_id")
     private List<Reply> replyList;
 }
