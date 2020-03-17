@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/include/head :: head"></th:block>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="/include/navbar :: navbar"></th:block>
+    <th:block th:replace="/include/sidebar :: sidebar"></th:block>
+    <div th:include="${wrapper}::wrapper" class="content-wrapper"></div>
+</div>
+<th:block th:replace="/include/js :: js"></th:block>
+</body>
+</html>

@@ -22,7 +22,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form th:action="@{/login}" method="post" id="loginForm">
+      <form method="post" action="/login" id="loginForm">
         <div th:if="${param.error}">
           <div class="alert alert-danger">
             Check your id or password.
@@ -79,6 +79,7 @@
 <script src="/static/js/common/additional-methods.min.js"></script>
 <script src="/static/js/common/toastr.min.js"></script>
 <script src="/static/js/common/common.js"></script>
+<script src="/static/js/common/common-ajax.js"></script>
 <script src="/static/js/common/adminlte.min.js"></script>
 <script src="/static/js/member/login.js"></script>
 </body>

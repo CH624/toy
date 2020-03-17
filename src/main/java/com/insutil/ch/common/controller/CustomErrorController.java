@@ -30,4 +30,10 @@ public class CustomErrorController {
         logger.info("Access denied // Login Id : " + authentication.getName());
         return "/error/denied";
     }
+
+    @GetMapping("/user-not-found")
+    public String userNotFound(){
+        logger.info("user not found");
+        return "/error/user-not-found";
+    }
 }

@@ -1,13 +1,10 @@
 package com.insutil.ch.member.controller;
 
-import com.insutil.ch.common.response.OperationResponse;
 import com.insutil.ch.member.model.Member;
 import com.insutil.ch.member.service.RegisterService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +32,7 @@ public class RegisterController {
         return "redirect:/login";
     }
 
-    @GetMapping("/api/register/check")
+    @GetMapping("/register/check")
     @ResponseBody
     public boolean checkForDuplicateLoginId(String loginId){
         logger.info("RegisterController.checkForDuplicateLoginId()" + loginId);

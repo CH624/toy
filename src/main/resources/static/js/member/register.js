@@ -4,7 +4,7 @@ $(document).ready(function () {
             loginId: {
                 required: true,
                 minlength: 5,
-                remote : "/api/register/check"
+                remote : "/register/check"
             },
             password: {
                 required: true,

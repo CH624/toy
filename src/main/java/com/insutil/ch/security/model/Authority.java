@@ -11,8 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Authority {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
 
     @Column

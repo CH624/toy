@@ -29,15 +29,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         Member member = Optional
                 .ofNullable(memberRepository.findByLoginId(loginId))
                 .orElseThrow(()-> new UsernameNotFoundException(loginId + "is not founded"));
-        CustomUserDetails customUserDetails = new CustomUserDetails();
-        customUserDetails.setUsername(member.getLoginId());
-        customUserDetails.setPassword(member.getPassword());
-        customUserDetails.setAuthorities(getAuthorities(member.getRoles()));
-        customUserDetails.setEnabled(true);
-        customUserDetails.setAccountNonExpired(true);
-        customUserDetails.setAccountNonLocked(true);
-        customUserDetails.setCredentialsNonExpired(true);
-        return customUserDetails;
+        return CustomUserDetails.builder()
+                .username(member.getLoginId())
+                .password(member.getPassword())
+                .authorities(getAuthorities(member.getRoles()))
+                .isEnabled(true)
+                .isAccountNonExpired(true)
+                .isAccountNonLocked(true)
+                .isCredentialsNonExpired(true)
+                .build();
     }
 
     public Collection<GrantedAuthority> getAuthorities(List<Authority> authorityList) {

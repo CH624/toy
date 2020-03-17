@@ -12,8 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private long id;
 
     @Column(name = "login_id", unique=true)

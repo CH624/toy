@@ -12,14 +12,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reply {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue
     private Long id;
 
     @Column
     private String content;
 
-    @ManyToOne
+    @OneToOne
     private Board board;
 
     @OneToOne

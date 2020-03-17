@@ -18,6 +18,8 @@ CommonAjax.getServerData = function () {
         url: this.url,
         type: this.type,
         data: this.data,
+        dataType: 'json',
+        contentType: 'application/json',
         success: function (result) {
             result.operationStatus === 'SUCCESS' ? resultData = result.content : toastr.error(result.operationMessage, 'Error');
         },
@@ -34,6 +36,8 @@ CommonAjax.manipulateServerData = function (callback) {
         type: this.type,
         url: this.url,
         data: this.data,
+        dataType: 'json',
+        contentType: 'application/json',
         success: function (result) {
             result.operationStatus === 'SUCCESS' ? callback(result) : toastr.error(result.operationMessage, 'Error');
         },

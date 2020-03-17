@@ -2,25 +2,14 @@ package com.insutil.ch.board.model;
 
 import com.insutil.ch.board.repository.BoardRepository;
 import com.insutil.ch.board.repository.ReplyRepository;
-import com.insutil.ch.member.model.Member;
 import com.insutil.ch.member.repository.MemberRepository;
-import com.insutil.ch.security.model.Authority;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

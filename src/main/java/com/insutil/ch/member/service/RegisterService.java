@@ -1,5 +1,7 @@
 package com.insutil.ch.member.service;
 
+import com.insutil.ch.blog.model.BlogSetting;
+import com.insutil.ch.blog.repository.BlogSettingRepository;
 import com.insutil.ch.common.response.OperationAndMakeResponse;
 import com.insutil.ch.member.model.Member;
 import com.insutil.ch.member.repository.MemberRepository;
@@ -20,12 +22,19 @@ import java.util.Optional;
 public class RegisterService implements OperationAndMakeResponse {
     private static final Logger logger = LoggerFactory.getLogger(RegisterService.class);
     private final MemberRepository memberRepository;
+    private final BlogSettingRepository blogSettingRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void insertMember(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         member.setRoles(Arrays.asList(new Authority("ROLE_MEMBER")));
         memberRepository.save(member);
+        blogSettingRepository.save(
+                BlogSetting.builder()
+                .member(member)
+                .title(member.getName() + "의 블로그")
+                .build()
+        );
     }
 
     public boolean checkForDuplicateLoginId(String loginId) {

@@ -12,8 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Board {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
 
     @Column
@@ -26,6 +25,7 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member writer;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany
+    @JoinColumn(name = "board_id")
     private List<Reply> replyList;
 }

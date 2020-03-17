@@ -1,26 +1,24 @@
 package com.insutil.ch.security.config;
 
-import com.insutil.ch.security.handler.LoginSuccessHandler;
+import com.insutil.ch.security.Filter.JwtAuthenticationFilter;
 import com.insutil.ch.security.service.CustomUserDetailsService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService customUserDetailsService;
-    private final LoginSuccessHandler loginSuccessHandler;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -34,30 +32,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/register", "/forgot", "/recover", "/api/**").permitAll()
+        http.httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/register/**", "/forgot/**", "/recover/**", "/login", "/error/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-                .and() // 로그인 설정
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("loginId")
-                .passwordParameter("password")
-                .successHandler(loginSuccessHandler)
-                .permitAll()
-                .and() // 로그아웃 설정
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .and()
-                .rememberMe()
-                .rememberMeCookieName("SurfBoardAppKey")
-                .rememberMeParameter("remember_me")
-                .tokenValiditySeconds(1209600)
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/denied");
+                .accessDeniedPage("/denied")
+                .and()
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

@@ -1,5 +1,23 @@
 $(document).ready(function () {
     $('#loginForm').validate({
+        submitHandler: function() {
+            $.ajax({
+                type: 'POST',
+                url: '/login',
+                data: JSON.stringify({
+                        loginId : document.getElementById('loginId').value,
+                        password : document.getElementById('password').value,
+                }),
+                contentType: 'application/json',
+                success: function (result) {
+                    sessionStorage.setItem('token', result);
+
+                },
+                error: function (request) {
+                    toastr.error(request.responseJSON.message, 'Error');
+                },
+            });
+        },
         rules: {
             loginId: {
                 required: true,
