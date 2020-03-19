@@ -25,7 +25,7 @@ public class RegisterService implements OperationAndMakeResponse {
     private final BlogSettingRepository blogSettingRepository;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public void insertMember(Member member) {
+    public boolean insertMember(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         member.setRoles(Arrays.asList(new Authority("ROLE_MEMBER")));
         memberRepository.save(member);
@@ -35,6 +35,7 @@ public class RegisterService implements OperationAndMakeResponse {
                 .title(member.getName() + "의 블로그")
                 .build()
         );
+        return true;
     }
 
     public boolean checkForDuplicateLoginId(String loginId) {
