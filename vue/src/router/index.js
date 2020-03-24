@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from '@/components/login/Login';
-import Register from '@/components/login/Register';
+import Account from '@/pages/Account';
 import Dashboard from '@/components/Dashboard';
 import PageNotFound from '@/components/error/PageNotFound';
 
@@ -18,13 +17,13 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login,
+      component: Account,
       meta: { allRequired: true },
     },
     {
       path: '/register',
-      name: 'register',
-      component: Register,
+      name: 'Register',
+      component: Account,
       meta: { allRequired: true },
     },
     {
