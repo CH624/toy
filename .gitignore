@@ -32,3 +32,5 @@ build/
 .vscode/
 /logs/
 /node_modules/
+!/src/main/resources/templates/index.html
+!/src/main/resources/static/dist/
