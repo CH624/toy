@@ -43,7 +43,7 @@
         <b-button variant="primary btn-block" v-on:click="register">Register</b-button>
       </div>
     </form>
-    <router-link class="text-center" to="/login">I already have a membership</router-link>
+    <router-link class="text-center" to="/account/login">I already have a membership</router-link>
   </div>
 </template>
 

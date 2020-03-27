@@ -28,10 +28,15 @@ Vue.use(toastr, {
 
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('token');
-  to.matched.some(routeInfo => !routeInfo.meta.allRequired) && (token == null || token === '') ? next('/login') : next();
+  to.matched.some(routeInfo => !routeInfo.meta.allRequired) && (token == null || token === '') ? next('/account/login') : next();
 });
 
-//axios.defaults.headers.common['X-AUTH-TOKEN'] = sessionStorage.getItem('token');
+axios.interceptors.request.use(config => {
+    config.headers['X-AUTH-TOKEN'] = sessionStorage.getItem("token");
+    return config;
+  },
+   error => Promise.reject(error)
+);
 
 Vue.config.productionTip = false;
 

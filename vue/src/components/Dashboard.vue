@@ -19,9 +19,7 @@ export default {
   },
   methods: {
     test() {
-      axios.get('/api/member/info',{
-        headers : {'X-AUTH-TOKEN' : sessionStorage.getItem('token')}
-      }).then(result => console.log(result.data));
+      axios.get('/api/member/info').then(result => console.log(result.data));
     },
     reverse() {
       this.msg = this.msg.split('').reverse().join('');

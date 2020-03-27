@@ -41,10 +41,10 @@
     </form>
 
     <p class="mb-1">
-      <router-link to="/forgot">I forgot my password</router-link>
+      <router-link to="/account/forgot">I forgot my password</router-link>
     </p>
     <p class="mb-0">
-      <router-link to="/register">Register a new membership</router-link>
+      <router-link to="/account/register">Register a new membership</router-link>
     </p>
   </div>
 </template>
