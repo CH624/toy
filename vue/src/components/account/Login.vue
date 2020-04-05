@@ -12,16 +12,16 @@
                placeholder="Login id" id="loginId" name="loginId">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="envelope"></font-awesome-icon>
+            <font-awesome-icon icon="envelope"/>
           </div>
         </div>
       </div>
       <div class="input-group mb-3">
         <input type="password" class="form-control"
-               placeholder="Password" id="password" name="password">
+               placeholder="Password" id="password" name="password" v-on:keyup.enter="login">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="lock"></font-awesome-icon>
+            <font-awesome-icon icon="lock"/>
           </div>
         </div>
       </div>
@@ -76,7 +76,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

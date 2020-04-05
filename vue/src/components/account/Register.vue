@@ -8,7 +8,7 @@
                id="name" name="name">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="user"></font-awesome-icon>
+            <font-awesome-icon icon="user"/>
           </div>
         </div>
       </div>
@@ -17,7 +17,7 @@
                id="loginId" name="loginId">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="envelope"></font-awesome-icon>
+            <font-awesome-icon icon="envelope"/>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
                id="password" name="password">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="lock"></font-awesome-icon>
+            <font-awesome-icon icon="lock"/>
           </div>
         </div>
       </div>
@@ -35,7 +35,7 @@
                placeholder="Retype password">
         <div class="input-group-append">
           <div class="input-group-text">
-            <font-awesome-icon icon="lock"></font-awesome-icon>
+            <font-awesome-icon icon="lock"/>
           </div>
         </div>
       </div>
@@ -68,7 +68,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

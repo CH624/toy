@@ -21,21 +21,28 @@ library.add(far);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.use(BootstrapVue);
 Vue.use(toastr, {
-  defaultTimeout: 3000,
+  defaultTimeout: 2000,
   defaultProgressBar: true,
   defaultPosition: 'toast-top-center',
 });
 
 router.beforeEach((to, from, next) => {
   const token = sessionStorage.getItem('token');
-  to.matched.some(routeInfo => !routeInfo.meta.allRequired) && (token == null || token === '') ? next('/account/login') : next();
+  if (to.matched.some(routeInfo => !routeInfo.meta.allRequired) && token == null) {
+    next('/account/login');
+  } else {
+    next();
+  }
 });
 
-axios.interceptors.request.use(config => {
-    config.headers['X-AUTH-TOKEN'] = sessionStorage.getItem("token");
-    return config;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.interceptors.request.use(
+  (config) => {
+    const headerConfig = config;
+    headerConfig.headers['X-AUTH-TOKEN'] = sessionStorage.getItem('token');
+    return headerConfig;
   },
-   error => Promise.reject(error)
+  error => Promise.reject(error),
 );
 
 Vue.config.productionTip = false;

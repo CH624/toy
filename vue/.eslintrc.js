@@ -7,6 +7,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    jquery: true,
   },
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
@@ -25,6 +26,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'no-console' : 'off',
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',

@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="hold-transition sidebar-mini">
+      <div class="wrapper">
+        <Navbar/>
+        <Sidebar/>
+        <div class="content-wrapper p-3">
+          <router-view/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Sidebar from '@/components/common/Sidebar';
+import Navbar from '@/components/common/Navbar';
+
 export default {
   name: 'App',
+  components: { Sidebar, Navbar },
 };
 </script>
 
